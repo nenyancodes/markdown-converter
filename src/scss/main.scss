@@ -15,7 +15,7 @@ html {
   height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   background: linear-gradient(to right, #fff 50%, #0d3c66 50% 100%);
 }
@@ -32,6 +32,10 @@ span:last-child {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 32px;
   color: #fff;
+}
+
+.heading {
+  margin-top: 1em;
 }
 
 .markdown-converter {
