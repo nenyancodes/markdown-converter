@@ -49,12 +49,16 @@ span:last-child {
 
   &__textarea {
     width: 100%;
-    height: 90%;
+    height: 92%;
+    padding: 20px;
+    margin-bottom: 15px;
     border: none;
+    font-family: "Courier New", Courier, monospace;
+    font-weight: bold;
+    color: #accbe6;
+    background-color: #0f4675;
     outline: none;
     resize: none;
-    padding: 20px;
-    margin-bottom: 10px;
   }
 
   button {
