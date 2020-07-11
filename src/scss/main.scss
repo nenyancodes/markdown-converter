@@ -56,4 +56,28 @@ span:last-child {
     padding: 20px;
     margin-bottom: 10px;
   }
+
+  button {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #fff;
+    padding: 10px 30px;
+    border: none;
+    outline: none;
+  }
+
+  &__button-save {
+    background-color: #00e5ba;
+    float: right;
+  }
+
+  &__button-clear {
+    background-color: #009a9c;
+  }
+
+  &__button-load {
+    background-color: #006999;
+  }
 }
