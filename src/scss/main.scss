@@ -73,18 +73,28 @@ span:last-child {
     padding: 10px 30px;
     border: none;
     outline: none;
+    transition: 0.3s;
   }
 
   &__button-save {
     background-color: #00e5ba;
     float: right;
+    &:hover {
+      background-color: #00ffd0;
+    }
   }
 
   &__button-clear {
     background-color: #009a9c;
+    &:hover {
+      background-color: #01a7aa;
+    }
   }
 
   &__button-load {
     background-color: #006999;
+    &:hover {
+      background-color: #0076ad;
+    }
   }
 }
