@@ -69,32 +69,39 @@ span:last-child {
     font-size: 12px;
     font-weight: bold;
     text-transform: uppercase;
-    color: #fff;
     padding: 10px 30px;
-    border: none;
     outline: none;
-    transition: 0.3s;
+    transition: 0.125s;
   }
 
   &__button-save {
-    background-color: #00e5ba;
+    border: 3px solid #00ffd0;
+    background-color: #00ffd0;
+    color: #0d3c66;
     float: right;
     &:hover {
-      background-color: #00ffd0;
+      background-color: #0d3c66;
+      color: #00ffd0;
     }
   }
 
   &__button-clear {
-    background-color: #009a9c;
+    border: 3px solid #01cccf;
+    background-color: #01cccf;
+    color: #0d3c66;
     &:hover {
-      background-color: #01a7aa;
+      background-color: #0d3c66;
+      color: #01cccf;
     }
   }
 
   &__button-load {
-    background-color: #006999;
+    border: 3px solid #0190d3;
+    background-color: #0190d3;
+    color: #0d3c66;
     &:hover {
-      background-color: #0076ad;
+      background-color: #0d3c66;
+      color: #0190d3;
     }
   }
 }
