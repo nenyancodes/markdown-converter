@@ -5,45 +5,40 @@ const markdownIt = new MarkdownIt();
 
 console.log("HELLO 🚀");
 
-localStorage.setItem("entry", "");
-
-let result = "";
-const entry = localStorage.getItem("entry");
-
-if (entry) {
-  result = entry;
-}
-
 const textarea = document.querySelector(".markdown__textarea");
-textarea.value = result;
-
 const converted = document.querySelector(".converted");
+const saveButton = document.querySelector(".markdown__button-save");
+const clearButton = document.querySelector(".markdown__button-clear");
+const loadButton = document.querySelector(".markdown__button-load");
 
-const renderMarkdown = () => {
-  console.log("render");
-
-  let text = localStorage.getItem("entry");
-  console.log(text);
-  let textConverted = markdownIt.render(text);
-  converted.innerHTML = `<div>${textConverted}</div>`;
-  console.log(textConverted);
+const initializeTextarea = () => {
+  const entry = localStorage.getItem("plainText");
+  const result = entry ? entry : "";
+  textarea.value = result;
+  localStorage.setItem("plainText", result);
+  renderMarkdown();
 };
 
-const saveButton = document.querySelector(".markdown__button-save");
+const renderMarkdown = () => {
+  let text = localStorage.getItem("plainText");
+  let textConverted = text ? markdownIt.render(text) : "";
+  converted.innerHTML = `<div>${textConverted}</div>`;
+};
+
 saveButton.addEventListener("click", () => {
-  localStorage.setItem("entry", textarea.value);
+  localStorage.setItem("plainText", textarea.value);
   renderMarkdown();
 });
 
-const clearButton = document.querySelector(".markdown__button-clear");
 clearButton.addEventListener("click", () => {
   textarea.value = "";
-  localStorage.setItem("entry", textarea.value);
+  localStorage.setItem("plainText", textarea.value);
   renderMarkdown();
 });
 
-const loadButton = document.querySelector(".markdown__button-load");
 loadButton.addEventListener("click", () => {
-  textarea.value = localStorage.getItem("entry");
+  textarea.value = localStorage.getItem("plainText");
   renderMarkdown();
 });
+
+initializeTextarea();
