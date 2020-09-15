@@ -107,7 +107,13 @@ span:last-child {
 }
 
 .converted {
-  height: 92%;
+  height: 100%;
+  padding: 25px;
   overflow-y: scroll;
   overflow-x: hidden;
+  font-family: Tahoma, Geneva, sans-serif;
+  color: #333;
+  & img {
+    max-width: 450px;
+  }
 }
