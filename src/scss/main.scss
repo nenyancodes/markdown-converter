@@ -112,7 +112,8 @@ span:last-child {
   overflow-y: scroll;
   overflow-x: hidden;
   font-family: Tahoma, Geneva, sans-serif;
-  color: #333;
+  color: rgb(17, 26, 43);
+  font-size: 14px;
   & img {
     max-width: 450px;
   }
