@@ -10,6 +10,10 @@ Live:
 ## Project status
 <img src="doc/img/under-construction.svg" width="150">
 
+## TODO
+* [ ] add simultaneous scrolling
+* [ ] add setup description to readme.md
+
 ## Sources
 This project is being created for "WTF: co ten frontend" training program and loosely inspired by one of 9th week's homeworks: building simple text editor with local storage
 
