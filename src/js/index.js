@@ -42,3 +42,25 @@ loadButton.addEventListener("click", () => {
 });
 
 initializeTextarea();
+
+let isScrolling = false;
+
+const setScroll = function (target, height) {
+  target.scrollTop = height;
+};
+
+const handleScroll = function (source, target) {
+  source.addEventListener("scroll", (evt) => {
+    if (!isScrolling) {
+      window.setTimeout(() => {
+        let height = evt.target.scrollTop;
+        setScroll(target, height);
+        isScrolling = false;
+      }, 10);
+    }
+    isScrolling = true;
+  });
+};
+
+handleScroll(textarea, converted);
+handleScroll(converted, textarea);
