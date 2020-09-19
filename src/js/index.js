@@ -10,8 +10,15 @@ const converted = document.querySelector(".converted");
 const saveButton = document.querySelector(".markdown__button-save");
 const clearButton = document.querySelector(".markdown__button-clear");
 const loadButton = document.querySelector(".markdown__button-load");
+const shadowMd = document.querySelector(".shadow__markdown");
 
 // SAVING AND CLEARING LOCAL STORAGE
+
+const renderMarkdown = () => {
+  let text = localStorage.getItem("plainText");
+  let textConverted = text ? markdownIt.render(text) : "";
+  converted.innerHTML = `<div>${textConverted}</div>`;
+};
 
 const initializeTextarea = () => {
   const entry = localStorage.getItem("plainText");
@@ -19,12 +26,6 @@ const initializeTextarea = () => {
   textarea.value = result;
   localStorage.setItem("plainText", result);
   renderMarkdown();
-};
-
-const renderMarkdown = () => {
-  let text = localStorage.getItem("plainText");
-  let textConverted = text ? markdownIt.render(text) : "";
-  converted.innerHTML = `<div>${textConverted}</div>`;
 };
 
 saveButton.addEventListener("click", () => {
@@ -73,6 +74,7 @@ handleScroll(converted, textarea);
 
 let textareaValue = textarea.value;
 let textareaList = textareaValue.split(/(\n|\r\n)/g);
+// let textareaList = textareaSplit.filter((item) => item != "\n");
 
 // CREATE ARRAY OF OBJECTS
 
@@ -84,9 +86,7 @@ let theList = textareaList.map((text) => {
 
 // PRINT STRINGS AND MEASURE THEIR HEIGHTS
 
-const shadowMd = document.querySelector(".shadow__markdown");
-
-function measureScrollHeight() {
+function getMdHeight() {
   theList.forEach((object) => {
     const injectText = object.sourceString;
     shadowMd.innerHTML = `<p class="shadow__markdown__text">${injectText}</p>`;

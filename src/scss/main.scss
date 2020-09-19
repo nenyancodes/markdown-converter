@@ -119,32 +119,27 @@ span:last-child {
   }
 }
 
-.shadow__wrapper {
-  width: 80vw;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  background-color: #fff;
-
-  .shadow__markdown {
-    width: 40vw;
-    padding: 45px;
-    background-color: #0d3c66;
-    .shadow__markdown__text {
-      font-family: "Courier New", Courier, monospace;
-      font-weight: bold;
-      color: #accbe6;
-    }
+.shadow__markdown {
+  width: 40vw;
+  padding: 45px;
+  visibility: hidden;
+  position: absolute;
+  left: -9999px;
+  .shadow__markdown__text {
+    font-family: "Courier New", Courier, monospace;
+    font-weight: bold;
+    color: #accbe6;
   }
+}
 
-  .shadow__converted {
-    padding: 25px;
-    overflow-y: scroll;
-    overflow-x: hidden;
-    font-family: Tahoma, Geneva, sans-serif;
-    color: rgb(17, 26, 43);
-    font-size: 14px;
-    & img {
-      max-width: 450px;
-    }
+.shadow__converted {
+  width: 40vw;
+  visibility: hidden;
+  position: absolute;
+  left: -9999px;
+  font-family: Tahoma, Geneva, sans-serif;
+  font-size: 14px;
+  & img {
+    max-width: 450px;
   }
 }
