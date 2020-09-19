@@ -11,6 +11,8 @@ const saveButton = document.querySelector(".markdown__button-save");
 const clearButton = document.querySelector(".markdown__button-clear");
 const loadButton = document.querySelector(".markdown__button-load");
 
+// SAVING AND CLEARING LOCAL STORAGE
+
 const initializeTextarea = () => {
   const entry = localStorage.getItem("plainText");
   const result = entry ? entry : "";
@@ -42,6 +44,8 @@ loadButton.addEventListener("click", () => {
 });
 
 initializeTextarea();
+
+// SIMULTANEOUS SCOLLING
 
 let isScrolling = false;
 
@@ -77,3 +81,20 @@ let theList = textareaList.map((text) => {
     sourceString: text,
   };
 });
+
+// PRINT STRINGS AND MEASURE THEIR HEIGHTS
+
+const shadowMd = document.querySelector(".shadow__markdown");
+
+function measureScrollHeight() {
+  theList.forEach((object) => {
+    const injectText = object.sourceString;
+    shadowMd.innerHTML = `<p class="shadow__markdown__text">${injectText}</p>`;
+    const shadowMdText = document.querySelector(".shadow__markdown__text");
+
+    object.scrollHeight = shadowMdText.scrollHeight;
+  });
+}
+
+measureScrollHeight();
+console.log(theList);
