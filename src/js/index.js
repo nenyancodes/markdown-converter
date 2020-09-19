@@ -107,4 +107,20 @@ function getConvertedHeight() {
 getMdHeight();
 getConvertedHeight();
 
+// COUNT AND ADJUST TOTAL SCROLL HEIGHT OF RAW AND CONVERTED ELEMENTS
+
+function countTotalScrollHeight() {
+  let totalSourceHeight = 0;
+  let totalTargetHeight = 0;
+  theList.forEach((object) => {
+    totalSourceHeight += +object.sourceHeight;
+    object.totalSourceHeight = totalSourceHeight;
+  });
+  theList.forEach((object) => {
+    totalTargetHeight += +object.targetHeight;
+    object.totalTargetHeight = totalTargetHeight;
+  });
+}
+
+countTotalScrollHeight();
 console.log(theList);
