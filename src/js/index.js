@@ -64,3 +64,16 @@ const handleScroll = function (source, target) {
 
 handleScroll(textarea, converted);
 handleScroll(converted, textarea);
+
+// SPLIT TEXTAREA VALUE TO ARRAY OF STRINGS
+
+let textareaValue = textarea.value;
+let textareaList = textareaValue.split(/(\n|\r\n)/g);
+
+// CREATE ARRAY OF OBJECTS
+
+let theList = textareaList.map((text) => {
+  return {
+    sourceString: text,
+  };
+});
