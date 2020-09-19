@@ -91,10 +91,20 @@ function getMdHeight() {
     const injectText = object.sourceString;
     shadowMd.innerHTML = `<p class="shadow__markdown__text">${injectText}</p>`;
     const shadowMdText = document.querySelector(".shadow__markdown__text");
-
-    object.scrollHeight = shadowMdText.scrollHeight;
+    object.sourceHeight = shadowMdText.scrollHeight;
   });
 }
 
-measureScrollHeight();
+function getConvertedHeight() {
+  theList.forEach((object) => {
+    object.targetString = markdownIt.render(object.sourceString);
+    const shadowConv = document.querySelector(".shadow__converted");
+    shadowConv.innerHTML = object.targetString;
+    object.targetHeight = shadowConv.scrollHeight;
+  });
+}
+
+getMdHeight();
+getConvertedHeight();
+
 console.log(theList);
