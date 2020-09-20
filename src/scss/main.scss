@@ -118,28 +118,3 @@ span:last-child {
     max-width: 450px;
   }
 }
-
-.shadow__markdown {
-  width: 40vw;
-  padding: 45px;
-  visibility: hidden;
-  position: absolute;
-  left: -9999px;
-  .shadow__markdown__text {
-    font-family: "Courier New", Courier, monospace;
-    font-weight: bold;
-    color: #accbe6;
-  }
-}
-
-.shadow__converted {
-  width: 40vw;
-  visibility: hidden;
-  position: absolute;
-  left: -9999px;
-  font-family: Tahoma, Geneva, sans-serif;
-  font-size: 14px;
-  & img {
-    max-width: 450px;
-  }
-}

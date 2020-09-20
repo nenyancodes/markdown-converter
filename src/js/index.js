@@ -46,81 +46,6 @@ loadButton.addEventListener("click", () => {
 
 initializeTextarea();
 
-// SPLIT TEXTAREA VALUE TO ARRAY OF STRINGS
-
-let textareaValue = textarea.value;
-let textareaList = textareaValue.split(/(\n|\r\n)/g);
-// let textareaList = textareaSplit.filter((item) => item != "\n");
-
-// CREATE ARRAY OF OBJECTS
-
-let theList = textareaList.map((text) => {
-  return {
-    sourceString: text,
-  };
-});
-
-// PRINT STRINGS AND MEASURE THEIR HEIGHTS
-
-function getMdHeight() {
-  theList.forEach((object) => {
-    const injectText = object.sourceString;
-    shadowMd.innerHTML = `<p class="shadow__markdown__text">${injectText}</p>`;
-    const shadowMdText = document.querySelector(".shadow__markdown__text");
-    object.sourceHeight = shadowMdText.scrollHeight;
-  });
-}
-
-function getConvertedHeight() {
-  theList.forEach((object) => {
-    object.targetString = markdownIt.render(object.sourceString);
-    const shadowConv = document.querySelector(".shadow__converted");
-    shadowConv.innerHTML = object.targetString;
-    object.targetHeight = shadowConv.scrollHeight;
-  });
-}
-
-getMdHeight();
-getConvertedHeight();
-
-// COUNT AND ADJUST TOTAL SCROLL HEIGHT OF RAW AND CONVERTED ELEMENTS
-
-function countTotalScrollHeight() {
-  let totalSourceHeight = 0;
-  let totalTargetHeight = 0;
-  theList.forEach((object) => {
-    // console.log("BEFORE sourceHeight", {
-    //   totalSourceHeight: totalSourceHeight,
-    //   objSourceHeight: object.sourceHeight,
-    //   objTotalSourceHeight: object.totalSourceHeight,
-    // });
-    totalSourceHeight += object.sourceHeight;
-    object.totalSourceHeight = totalSourceHeight;
-    // console.log("AFTER sourceHeight", {
-    //   totalSourceHeight: totalSourceHeight,
-    //   objSourceHeight: object.sourceHeight,
-    //   objTotalSourceHeight: object.totalSourceHeight,
-    // });
-  });
-  theList.forEach((object) => {
-    // console.log("BEFORE totalHeight", {
-    //   totalTargetHeight: totalTargetHeight,
-    //   objTargetHeight: object.targetHeight,
-    //   objTotalTargetHeight: object.totalTargetHeight,
-    // });
-    totalTargetHeight += object.targetHeight;
-    object.totalTargetHeight = totalTargetHeight;
-    // console.log("AFTER totalHeight", {
-    //   totalTargetHeight: totalTargetHeight,
-    //   objTargetHeight: object.targetHeight,
-    //   objTotalTargetHeight: object.totalTargetHeight,
-    // });
-  });
-}
-
-countTotalScrollHeight();
-console.log(theList);
-
 // SIMULTANEOUS SCOLLING
 
 let isScrolling = false;
@@ -129,36 +54,18 @@ const setScroll = function (target, height) {
   target.scrollTop = height;
 };
 
-// const handleScroll = function (source, target) {
-//   source.addEventListener("scroll", (evt) => {
-//     if (!isScrolling) {
-//       window.setTimeout(() => {
-//         let height = evt.target.scrollTop;
-//         setScroll(target, height);
-//         isScrolling = false;
-//       }, 10);
-//     }
-//     isScrolling = true;
-//   });
-// };
-
-// handleScroll(textarea, converted);
-// handleScroll(converted, textarea);
-
-textarea.addEventListener("scroll", (evt) => {
-  let prevTargetHeight = 0;
-  let exit = false;
-  theList.forEach((item) => {
-    if (!exit && evt.target.scrollTop < item.totalSourceHeight) {
-      console.log("Scroll!", {
-        scrollTop: evt.target.scrollTop,
-        totalSourceHeight: item.totalSourceHeight,
-        prevTargetHeight: prevTargetHeight,
-        item: item,
-      });
-      setScroll(converted, prevTargetHeight);
-      exit = true;
+const handleScroll = function (source, target) {
+  source.addEventListener("scroll", (evt) => {
+    if (!isScrolling) {
+      window.setTimeout(() => {
+        let height = evt.target.scrollTop;
+        setScroll(target, height);
+        isScrolling = false;
+      }, 10);
     }
-    prevTargetHeight = item.totalTargetHeight;
+    isScrolling = true;
   });
-});
+};
+
+handleScroll(textarea, converted);
+handleScroll(converted, textarea);
